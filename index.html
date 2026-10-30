@@ -21,7 +21,7 @@
       position: relative;
       width: 320px;
       height: 440px;
-      margin-top: 70px; /* espacio para la gorra */
+      margin-top: 110px; /* espacio para la gorra */
     }
 
     .bob div {
@@ -56,7 +56,26 @@
     .h5 { left: 150px; top: 15px;  width: 14px; height: 12px; }
 
     /* ---------- Ojos: blanco, iris azul, pupila negra ---------- */
-    .ojo { top: 45px; width: 76px; height: 76px; background: #fff; border: 3px solid #333; border-radius: 50%; }
+    .ojo {
+      top: 45px; width: 76px; height: 76px;
+      /* centro blanco, venitas rojas y borde rojizo: ojos irritados */
+      background:
+        radial-gradient(circle, #fff 30%, transparent 42%),
+        repeating-conic-gradient(transparent 0 13deg, rgba(210, 0, 0, 0.7) 13deg 15deg),
+        radial-gradient(circle, #ffe0e0 30%, #ff8a8a 75%, #e53935 100%);
+      border: 3px solid #333;
+      border-radius: 50%;
+    }
+
+    /* Parpados caidos: tapan la parte de arriba del ojo */
+    .parpado {
+      top: 45px; width: 76px; height: 76px;
+      background: linear-gradient(to bottom, #fff200 44%, #b5a300 44% 48%, transparent 48%);
+      border: 3px solid #333;
+      border-radius: 50%;
+    }
+    .parpado.izq { left: 84px; }
+    .parpado.der { left: 160px; }
     .ojo.izq { left: 84px; }
     .ojo.der { left: 160px; }
 
@@ -187,66 +206,66 @@
 
     /* ---------- Gorra Hugo Boss ---------- */
     .gorra {
-      left: 62px; top: -54px;
-      width: 196px; height: 62px;
+      left: 38px; top: -92px;
+      width: 244px; height: 104px;
       background: #111;
-      border-radius: 98px 98px 6px 6px / 62px 62px 6px 6px;
+      border-radius: 122px 122px 8px 8px / 104px 104px 8px 8px;
       color: #fff;
-      font: bold 15px/1 Helvetica, Arial, sans-serif;
+      font: bold 22px/1 Helvetica, Arial, sans-serif;
       letter-spacing: 3px;
       text-align: center;
-      padding-top: 28px;
+      padding-top: 52px;
     }
-    .boton  { left: 152px; top: -60px; width: 16px; height: 10px; background: #111; border-radius: 50%; }
-    .visera { left: 48px;  top: 2px;   width: 224px; height: 18px; background: #222; border-radius: 50%; }
+    .boton  { left: 148px; top: -101px; width: 24px; height: 14px; background: #111; border-radius: 50%; }
+    .visera { left: 16px;  top: 2px;   width: 288px; height: 24px; background: #222; border-radius: 50%; }
 
     /* ---------- Lunar rosado en la nariz (mismo tono que la bolsa) ---------- */
     .lunar { left: 159px; top: 124px; width: 8px; height: 8px; background: #ff69b4; border-radius: 50%; }
 
     /* ---------- Bolsita ziploc en la mano derecha ---------- */
     .bolsa {
-      left: 274px; top: 348px;
-      width: 34px; height: 42px;
+      left: 240px; top: 348px;
+      width: 102px; height: 126px;
       /* arriba transparente, abajo el contenido rosado */
       background: linear-gradient(to bottom, rgba(255, 255, 255, 0.45) 40%, #ff69b4 40%);
-      border: 2px solid rgba(255, 255, 255, 0.9);
-      border-top: 5px solid #1e88e5; /* el cierre zip */
-      border-radius: 3px 3px 6px 6px;
+      border: 4px solid rgba(255, 255, 255, 0.9);
+      border-top: 12px solid #1e88e5; /* el cierre zip */
+      border-radius: 8px 8px 18px 18px;
       /* gira desde el mismo hombro que el brazo, asi se mueve con la mano */
-      transform-origin: 17px -93px;
+      transform-origin: 51px -93px;
       animation: brazo-der 0.94s ease-in-out infinite;
     }
 
     /* ---------- Cigarrillo verde encendido en la mano izquierda ---------- */
     /* Todas las piezas giran desde el hombro izquierdo (x 29, y 255) con el brazo */
     .cigarro {
-      left: -6px; top: 344px;
-      width: 36px; height: 7px;
+      left: -144px; top: 329px;
+      width: 180px; height: 36px;
       /* papel verde y filtro naranja (en la mano) */
       background: linear-gradient(to right, #43a047 78%, #d9903d 78%);
-      border-radius: 2px;
-      transform-origin: 35px -89px;
-      animation: brazo-izq 0.94s ease-in-out infinite;
+      border-radius: 4px;
+      transform-origin: 173px -74px;
+      animation: fumar-cig 3s ease-in-out infinite;
     }
 
     .brasa {
-      left: -9px; top: 343px;
-      width: 6px; height: 9px;
+      left: -160px; top: 325px;
+      width: 28px; height: 44px;
       background: #ff3d00;
       border-radius: 50%;
-      transform-origin: 38px -88px;
-      animation: brazo-izq 0.94s ease-in-out infinite,
+      transform-origin: 189px -70px;
+      animation: fumar-cig 3s ease-in-out infinite,
                  encendido 0.6s ease-in-out infinite alternate;
     }
 
     /* Humo que sube y se desvanece */
     .humo {
-      left: -14px; top: 330px;
-      width: 12px; height: 12px;
+      left: -178px; top: 270px;
+      width: 52px; height: 52px;
       background: rgba(230, 230, 230, 0.8);
       border-radius: 50%;
-      transform-origin: 43px -75px;
-      animation: brazo-izq 0.94s ease-in-out infinite,
+      transform-origin: 207px -15px;
+      animation: fumar-humo 3s ease-in-out infinite,
                  humo 1.6s ease-out infinite;
     }
     .humo.h-2 { animation-delay: 0s, -0.8s; }
@@ -257,8 +276,18 @@
     }
     @keyframes humo {
       from { translate: 0 0;        opacity: 0.8; }
-      to   { translate: -10px -40px; opacity: 0; }
+      to   { translate: -20px -80px; opacity: 0; }
     }
+
+    /* ---------- Quitar y poner las gafas con clic ---------- */
+    .lente, .puente, .brillo, .patilla, .ojo, .iris, .pupila, .parpado { cursor: pointer; }
+    .lente, .puente, .brillo, .patilla { transition: opacity 0.4s, translate 0.4s; }
+    .sin-gafas .lente, .sin-gafas .puente, .sin-gafas .brillo, .sin-gafas .patilla {
+      opacity: 0;
+      translate: 0 -80px;
+      pointer-events: none;
+    }
+    .bocanada, .humo { pointer-events: none; }
 
     h1 {
       font-size: 72px;
@@ -271,7 +300,7 @@
     /* ================= ANIMACIONES ================= */
 
     /* Parpadeo: el ojo se aplasta (scale) y las pestañas bajan (translate) */
-    .ojo, .iris, .pupila { animation: parpadeo 3s infinite; }
+    .ojo, .iris, .pupila, .parpado { animation: parpadeo 3s infinite; }
     .pestana             { animation: pestanas 3s infinite; }
 
     @keyframes parpadeo {
@@ -297,14 +326,65 @@
     }
 
     /* Brazos arriba y abajo (giran desde el hombro) */
-    .brazo.izq { transform-origin: 7px 0;    animation: brazo-izq 0.94s ease-in-out infinite; }
-    .manga.izq { transform-origin: 19px 7px; animation: brazo-izq 0.94s ease-in-out infinite; }
+    .brazo.izq { transform-origin: 7px 0;    animation: fumar-brazo 3s ease-in-out infinite; }
+    .manga.izq { transform-origin: 19px 7px; animation: fumar-brazo 3s ease-in-out infinite; }
     .brazo.der { transform-origin: 7px 0;    animation: brazo-der 0.94s ease-in-out infinite; }
     .manga.der { transform-origin: 17px 7px; animation: brazo-der 0.94s ease-in-out infinite; }
 
-    @keyframes brazo-izq {
-      0%, 100% { rotate: 20deg; }
-      50%      { rotate: 150deg; }
+    /* ===== Fumar cada 3 s =====
+       0-55 %: baila moviendo el brazo
+       65-85 %: lleva el cigarro a la boca y fuma
+       85-100 %: baja el brazo y bota el humo */
+    @keyframes fumar-brazo {
+      0%, 30%, 55%, 95%, 100% { rotate: 20deg;   z-index: 0; }
+      15%, 45%                { rotate: 100deg;  z-index: 0; }
+      65%, 85%                { rotate: -139deg; z-index: 10; }
+    }
+
+    /* El cigarro gira con el brazo y, al fumar, se mueve hasta la boca
+       (translate) con la punta encendida apuntando hacia afuera */
+    @keyframes fumar-cig {
+      0%, 30%, 55%, 95%, 100% { rotate: 20deg;  translate: 0 0;           z-index: 0; }
+      15%, 45%                { rotate: 100deg; translate: 0 0;           z-index: 0; }
+      65%, 85%                { rotate: 24deg;  translate: 107px -177px;  z-index: 10; }
+    }
+
+    /* El humo de la punta se esconde mientras fuma */
+    @keyframes fumar-humo {
+      0%, 30%, 55%, 95%, 100% { rotate: 20deg;  visibility: visible; }
+      15%, 45%                { rotate: 100deg; visibility: visible; }
+      58%, 92%                { visibility: hidden; }
+    }
+
+    /* Nube de humo que sale de la boca justo despues de fumar.
+       Cada bocanada usa variables para su direccion (--x, --y),
+       tamaño final (--s) y retraso, asi salen muchas a la vez. */
+    .bocanada {
+      left: 130px; top: 160px;
+      width: 60px; height: 45px;
+      background: rgba(240, 240, 240, 0.95);
+      border-radius: 50%;
+      opacity: 0;
+      animation: bocanada 3s ease-out infinite;
+    }
+    .b1 { --x: -90px;  --y: -120px; --s: 3;   animation-delay: 0s; }
+    .b2 { --x: 0px;    --y: -150px; --s: 3.5; animation-delay: 0.06s; }
+    .b3 { --x: 90px;   --y: -110px; --s: 3;   animation-delay: 0.12s; }
+    .b4 { --x: -130px; --y: -40px;  --s: 2.5; animation-delay: 0.18s; }
+    .b5 { --x: 120px;  --y: -30px;  --s: 2.5; animation-delay: 0.24s; }
+    .b6 { --x: -40px;  --y: -200px; --s: 4;   animation-delay: 0.30s; }
+    .b7 { --x: 50px;   --y: -190px; --s: 4;   animation-delay: 0.36s; }
+    .b8 { --x: 0px;    --y: -80px;  --s: 3;   animation-delay: 0.42s; }
+    .b9  { --x: -70px; --y: -170px; --s: 3.5; animation-delay: 0.50s; }
+    .b10 { --x: 80px;  --y: -160px; --s: 3.5; animation-delay: 0.58s; }
+    .b11 { --x: -20px; --y: -230px; --s: 4.5; animation-delay: 0.66s; }
+    .b12 { --x: 30px;  --y: -120px; --s: 3;   animation-delay: 0.74s; }
+
+    @keyframes bocanada {
+      0%, 85% { opacity: 0;    translate: 0 0;              scale: 0.3; }
+      88%     { opacity: 1;    translate: 0 0;              scale: 1; }
+      95%     { opacity: 0.9;  translate: calc(var(--x) * 0.6) calc(var(--y) * 0.6); scale: calc(var(--s) * 0.7); }
+      100%    { opacity: 0;    translate: var(--x) var(--y); scale: var(--s); }
     }
     @keyframes brazo-der {
       0%, 100% { rotate: -150deg; }
@@ -345,6 +425,11 @@
     <div class="manga izq"></div>
     <div class="manga der"></div>
 
+    <div class="humo"></div>
+    <div class="humo h-2"></div>
+    <div class="cigarro"></div>
+    <div class="brasa"></div>
+
     <div class="cuerpo"></div>
     <div class="hoyo h1"></div>
     <div class="hoyo h2"></div>
@@ -364,6 +449,8 @@
     <div class="iris der"></div>
     <div class="pupila izq"></div>
     <div class="pupila der"></div>
+    <div class="parpado izq"></div>
+    <div class="parpado der"></div>
     <div class="patilla izq"></div>
     <div class="patilla der"></div>
     <div class="lente izq"></div>
@@ -405,13 +492,31 @@
     <div class="zapato der"></div>
 
     <div class="bolsa"></div>
+    <div class="bocanada b1"></div>
+    <div class="bocanada b2"></div>
+    <div class="bocanada b3"></div>
+    <div class="bocanada b4"></div>
+    <div class="bocanada b5"></div>
+    <div class="bocanada b6"></div>
+    <div class="bocanada b7"></div>
+    <div class="bocanada b8"></div>
+    <div class="bocanada b9"></div>
+    <div class="bocanada b10"></div>
+    <div class="bocanada b11"></div>
+    <div class="bocanada b12"></div>
 
-    <div class="humo"></div>
-    <div class="humo h-2"></div>
-    <div class="cigarro"></div>
-    <div class="brasa"></div>
   </div>
 
   <h1>sobelo</h1>
+  <script>
+    // Al hacer clic en las gafas, Bob se las quita; al hacer clic en los ojos, se las vuelve a poner
+    const bob = document.querySelector(".bob");
+
+    bob.addEventListener("click", (evento) => {
+      if (evento.target.matches(".lente, .puente, .brillo, .patilla, .ojo, .iris, .pupila, .parpado")) {
+        bob.classList.toggle("sin-gafas");
+      }
+    });
+  </script>
 </body>
 </html>
