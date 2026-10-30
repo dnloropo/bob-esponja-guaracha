@@ -16,15 +16,30 @@
       font-family: sans-serif;
     }
 
-    /* Lienzo: todas las piezas se colocan encima con position: absolute */
-    .bob {
+    body { overflow-x: hidden; }
+
+    /* Escena: Bob y Patricio uno al lado del otro */
+    .escena {
+      display: flex;
+      align-items: flex-start;
+      gap: 170px;
+      padding: 0 190px; /* espacio para los cigarrillos */
+    }
+    @media (max-width: 1250px) { .escena { zoom: 0.75; } }
+    @media (max-width: 900px)  { .escena { zoom: 0.5; } }
+    @media (max-width: 600px)  { .escena { zoom: 0.3; } }
+
+    /* Lienzo de cada personaje: todas las piezas se colocan encima con position: absolute.
+       Bob y Patricio usan el mismo sistema de coordenadas, asi comparten objetos y animaciones */
+    .bob, .patricio {
       position: relative;
+      flex: none;
       width: 320px;
       height: 440px;
       margin-top: 110px; /* espacio para la gorra */
     }
 
-    .bob div {
+    .bob div, .patricio div {
       position: absolute;
       box-sizing: border-box;
     }
@@ -312,8 +327,8 @@
       95%           { translate: 0 34px; }
     }
 
-    /* Guaracha: todo Bob se balancea de lado a lado y rebota */
-    .bob {
+    /* Guaracha: Bob y Patricio se balancean de lado a lado y rebotan */
+    .bob, .patricio {
       transform-origin: 50% 100%;
       animation: guaracha 0.94s ease-in-out infinite;
     }
@@ -416,9 +431,114 @@
       0%, 100% { scale: 1; }
       50%      { scale: 1.12; }
     }
+
+    /* ================= PATRICIO ESTRELLA ================= */
+    /* Patricio esta en espejo: su cigarrillo queda afuera a la derecha
+       y su bolsa queda hacia Bob */
+    .patricio { scale: -1 1; animation-delay: -0.47s; }
+
+    /* Cuerpo de estrella (sin los antebrazos, que se mueven aparte) */
+    .patricio .estrella {
+      left: 0; top: 0;
+      width: 320px; height: 445px;
+      background: radial-gradient(circle at 50% 35%, #ffc2d4, #ff94b5 60%, #ee6f97);
+      clip-path: polygon(
+        160px -10px, 185px 20px, 210px 80px, 222px 160px,
+        295px 240px, 300px 262px, 295px 285px, 245px 305px,
+        282px 430px, 268px 442px, 225px 442px, 160px 375px,
+        95px 442px, 52px 442px, 38px 430px, 75px 305px,
+        25px 285px, 20px 262px, 25px 240px, 98px 160px,
+        110px 80px, 135px 20px);
+    }
+
+    /* Pantaloneta verde con flores moradas */
+    .patricio .short {
+      left: 0; top: 0;
+      width: 320px; height: 445px;
+      background:
+        radial-gradient(circle, #8e44ad 5px, transparent 6px) 0 0 / 30px 30px,
+        radial-gradient(circle, #8e44ad 5px, transparent 6px) 15px 15px / 30px 30px,
+        #7cc242;
+      clip-path: polygon(
+        75px 305px, 245px 305px, 270px 392px, 176px 392px,
+        160px 375px, 144px 392px, 50px 392px);
+    }
+
+    /* Antebrazos rosados (giran desde el mismo hombro que los de Bob) */
+    .patricio .brazo {
+      width: 26px;
+      background: linear-gradient(to bottom, #ff94b5, #ee6f97);
+      border: none;
+      border-radius: 4px 4px 13px 13px;
+    }
+    .patricio .brazo.izq { left: 16px;  transform-origin: 13px 0; }
+    .patricio .brazo.der { left: 278px; transform-origin: 13px 0; }
+
+    /* Ojos: mas juntos y ovalados, igual de rojos y cansados */
+    .patricio .ojo { top: 78px; width: 38px; height: 50px; }
+    .patricio .ojo.izq { left: 120px; }
+    .patricio .ojo.der { left: 162px; }
+
+    .patricio .parpado {
+      top: 78px; width: 38px; height: 50px;
+      background: linear-gradient(to bottom, #ff94b5 44%, #c94f78 44% 48%, transparent 48%);
+    }
+    .patricio .parpado.izq { left: 120px; }
+    .patricio .parpado.der { left: 162px; }
+
+    .patricio .iris { top: 95px; width: 16px; height: 16px; border-width: 1px; }
+    .patricio .iris.izq { left: 131px; }
+    .patricio .iris.der { left: 173px; }
+
+    .patricio .pupila { top: 99px; width: 8px; height: 8px; }
+    .patricio .pupila.izq { left: 135px; }
+    .patricio .pupila.der { left: 177px; }
+
+    /* Cejas */
+    .patricio .ceja { top: 66px; width: 26px; height: 5px; background: #000; border-radius: 3px; }
+    .patricio .ceja.izq { left: 126px; transform: rotate(-12deg); }
+    .patricio .ceja.der { left: 168px; transform: rotate(12deg); }
+
+    /* Gafas de ciclismo a su medida */
+    .patricio .lente { top: 70px; width: 50px; height: 64px; border-width: 3px; }
+    .patricio .lente.izq { left: 112px; border-radius: 14px 20px 18px 26px; }
+    .patricio .lente.der { left: 158px; border-radius: 20px 14px 26px 18px; }
+    .patricio .puente { left: 154px; top: 84px; width: 12px; height: 7px; }
+    .patricio .brillo { top: 76px; width: 22px; height: 6px; }
+    .patricio .brillo.izq { left: 120px; }
+    .patricio .brillo.der { left: 166px; }
+    .patricio .patilla { top: 92px; width: 20px; height: 6px; }
+    .patricio .patilla.izq { left: 94px; }
+    .patricio .patilla.der { left: 206px; }
+
+    /* Boca grande, cachetes y lunar */
+    .patricio .boca { left: 112px; top: 150px; width: 96px; height: 42px; border-radius: 0 0 48px 48px; }
+    .patricio .cachete { top: 140px; width: 22px; height: 16px; background: #ff5c8a; }
+    .patricio .cachete.izq { left: 104px; }
+    .patricio .cachete.der { left: 194px; }
+    .patricio .lunar { left: 198px; top: 166px; }
+
+    /* Gorra Hugo Boss sobre la punta de la cabeza (el texto se des-espeja) */
+    .patricio .gorra {
+      left: 70px; top: -64px;
+      width: 180px; height: 92px;
+      border-radius: 90px 90px 8px 8px / 92px 92px 8px 8px;
+      font-size: 17px;
+      padding-top: 44px;
+      scale: -1 1;
+    }
+    .patricio .boton  { left: 150px; top: -72px; width: 20px; height: 12px; }
+    .patricio .visera { left: 50px;  top: 18px;  width: 220px; height: 20px; }
+
+    /* La bolsa ziploc de Patricio tiene contenido blanco */
+    .patricio .bolsa {
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.45) 40%, #ffffff 40%);
+      box-shadow: inset 0 -6px 0 #e6e6e6; /* sombrita para que se note el contenido */
+    }
   </style>
 </head>
 <body>
+  <div class="escena">
   <div class="bob">
     <div class="brazo izq"></div>
     <div class="brazo der"></div>
@@ -504,18 +624,72 @@
     <div class="bocanada b10"></div>
     <div class="bocanada b11"></div>
     <div class="bocanada b12"></div>
+  </div>
 
+  <div class="patricio">
+    <div class="humo"></div>
+    <div class="humo h-2"></div>
+    <div class="cigarro"></div>
+    <div class="brasa"></div>
+
+    <div class="brazo izq"></div>
+    <div class="brazo der"></div>
+
+    <div class="estrella"></div>
+    <div class="short"></div>
+
+    <div class="ojo izq"></div>
+    <div class="ojo der"></div>
+    <div class="iris izq"></div>
+    <div class="iris der"></div>
+    <div class="pupila izq"></div>
+    <div class="pupila der"></div>
+    <div class="parpado izq"></div>
+    <div class="parpado der"></div>
+    <div class="ceja izq"></div>
+    <div class="ceja der"></div>
+    <div class="patilla izq"></div>
+    <div class="patilla der"></div>
+    <div class="lente izq"></div>
+    <div class="lente der"></div>
+    <div class="puente"></div>
+    <div class="brillo izq"></div>
+    <div class="brillo der"></div>
+
+    <div class="cachete izq"></div>
+    <div class="cachete der"></div>
+    <div class="boca"></div>
+    <div class="lunar"></div>
+
+    <div class="gorra">HUGO BOSS</div>
+    <div class="boton"></div>
+    <div class="visera"></div>
+
+    <div class="bolsa"></div>
+    <div class="bocanada b1"></div>
+    <div class="bocanada b2"></div>
+    <div class="bocanada b3"></div>
+    <div class="bocanada b4"></div>
+    <div class="bocanada b5"></div>
+    <div class="bocanada b6"></div>
+    <div class="bocanada b7"></div>
+    <div class="bocanada b8"></div>
+    <div class="bocanada b9"></div>
+    <div class="bocanada b10"></div>
+    <div class="bocanada b11"></div>
+    <div class="bocanada b12"></div>
+  </div>
   </div>
 
   <h1>sobelo</h1>
   <script>
-    // Al hacer clic en las gafas, Bob se las quita; al hacer clic en los ojos, se las vuelve a poner
-    const bob = document.querySelector(".bob");
-
-    bob.addEventListener("click", (evento) => {
-      if (evento.target.matches(".lente, .puente, .brillo, .patilla, .ojo, .iris, .pupila, .parpado")) {
-        bob.classList.toggle("sin-gafas");
-      }
+    // Al hacer clic en las gafas, el personaje se las quita; al hacer clic en los ojos, se las vuelve a poner
+    document.querySelectorAll(".bob, .patricio").forEach((personaje) => {
+      personaje.addEventListener("click", (evento) => {
+        if (evento.target.matches(".lente, .puente, .brillo, .patilla, .ojo, .iris, .pupila, .parpado")) {
+          personaje.classList.toggle("sin-gafas");
+        }
+      });
     });
   </script>
 </body>
